@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+
 
 class RescueStories extends Component {
   state = {
@@ -7,8 +8,10 @@ class RescueStories extends Component {
     age: "",
     breed: "",
     story: "",
+    imageUrl: "",
   };
 
+  
   handleSubmit = (e) => {
     e.preventDefault();
     axios.post("http://localhost:5000/api/rescue-story", this.state, {
@@ -20,6 +23,11 @@ class RescueStories extends Component {
   handleChange = (e) => {
     console.log(e.target.value, e.target.name);
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleFileChange = (e) => {
+    const file = e.target.files[0];
+    console.log("Image file", file);
   };
 
   render() {
@@ -58,7 +66,11 @@ class RescueStories extends Component {
           <br />
           <label>Show off your beautiful Furbaby!</label>
           <br />
-          <input type="file" name="image" />
+          <input
+            type="file"
+            name="imageUrl"
+            onChange={this.handleFileChange}
+          />
           <button>Submit</button>
         </form>
       </div>
