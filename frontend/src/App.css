@@ -80,3 +80,7 @@ h1 {
 .cat-img {
   width: 50vh;
 }
+
+.error {
+  color:red
+}

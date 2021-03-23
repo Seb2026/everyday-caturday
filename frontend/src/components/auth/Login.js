@@ -3,7 +3,12 @@ import AuthService from "./auth-service";
 import { Link } from "react-router-dom";
 
 class Login extends Component {
-  state = { username: "", password: "" };
+  state = {
+    username: "",
+    password: "",
+    errorStatus: false,
+    errorMsg: "",
+  };
 
   service = new AuthService();
 
@@ -17,9 +22,14 @@ class Login extends Component {
         this.setState({ username: "", password: "" });
         this.props.getUser(response);
       })
-      .catch((error) => console.log(error));
-
-    this.props.history.push("/");
+      .catch((error) => {
+        if (error.response) {
+          this.setState({
+            errorStatus: true,
+            errorMsg: error.response.data.message,
+          });
+        }
+      });
   };
 
   handleChange = (event) => {
@@ -28,6 +38,7 @@ class Login extends Component {
   };
 
   render() {
+    const errorStatus = this.state.errorStatus;
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
@@ -48,6 +59,11 @@ class Login extends Component {
 
           <input type="submit" value="Login" />
         </form>
+        {errorStatus ? (
+          <p className="error">{this.state.errorMsg}</p>
+        ) : (
+          <p>Login</p>
+        )}
         <p>
           Don't have account?
           <Link to={"/signup"}> Signup</Link>
