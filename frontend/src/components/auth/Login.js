@@ -19,7 +19,7 @@ class Login extends Component {
       })
       .catch((error) => console.log(error));
 
-    // this.props.history.push("/");
+    this.props.history.push("/");
   };
 
   handleChange = (event) => {
