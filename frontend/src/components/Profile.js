@@ -32,7 +32,7 @@ class Profile extends Component {
       return (
         <div>
           Profile
-          <h2>{this.state.loggedInUser.email}</h2>
+          <h2>{this.state.loggedInUser.username}</h2>
         </div>
       );
     } else {
