@@ -67,9 +67,7 @@ class App extends Component {
             <Link to="/">Home</Link>
             <Link to="/cat-list">Cats</Link>
             <Link to="/rescueStories">RescueStories</Link>
-            <Link to="/login">Login</Link>
             <Link to="/profile">Profile</Link>
-            <Link to="/signup"> Signup</Link>
             <Link to="/">
               <button onClick={this.logoutUser}>Logout </button>
             </Link>
@@ -141,7 +139,6 @@ class App extends Component {
             <Link to="/login">Login</Link>
             {/* {this.state.user.email ? ( */}
             {/* ) : ( */}
-            <Link to="/signup"> Signup</Link>
             {/* )} */}
           </nav>
           <h1>
