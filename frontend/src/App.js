@@ -115,7 +115,12 @@ class App extends Component {
             <Route
               exact
               path="/rescueStories"
-              render={(props) => <RescueStories {...props} />}
+              render={(props) => (
+                <RescueStories
+                  userInSession={this.state.loggedInUser}
+                  {...props}
+                />
+              )}
             />
 
             <Route
@@ -185,7 +190,12 @@ class App extends Component {
             <Route
               exact
               path="/rescueStories"
-              render={(props) => <RescueStories {...props} />}
+              render={(props) => (
+                <RescueStories
+                  userInSession={this.state.loggedInUser}
+                  {...props}
+                />
+              )}
             />
 
             <Route
