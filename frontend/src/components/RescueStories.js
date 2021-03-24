@@ -33,17 +33,17 @@ class RescueStories extends Component {
   showAllStories = () => {
     return this.state.listOfStories.map((eachStory) => {
       return (
-        <ul key={eachStory._id}>
-          <li>Name: {eachStory.name}</li>
-          <li>Age: {eachStory.age}</li>
-          <li>Breed: {eachStory.breed}</li>
-          <li>Story: {eachStory.story}</li>
-          <li>Made by: {eachStory.userId.username}</li>
+        <div className="cat" key={eachStory._id}>
+          <span className="attributes">Name:</span> {eachStory.name}<br /> <br />
+          <span className="attributes">Age:</span> {eachStory.age}<br /> <br />
+          <span className="attributes">Breed:</span> {eachStory.breed}<br /> <br />
+          <span className="attributes">Story:</span> {eachStory.story}<br /> <br />
+          <span className="attributes">Made by:</span> {eachStory.userId.username}<br /> <br />
           {/* onChange={(e) => this.handleChange(e)} */}
           <button onClick={() => this.deleteStory(eachStory._id)}>
             Delete
           </button>
-        </ul>
+        </div>
       );
     });
   };
@@ -105,7 +105,9 @@ class RescueStories extends Component {
           <input type="file" name="imageUrl" onChange={this.handleFileChange} />
           <button>Submit</button>
         </form>
+        <p className="cat-grid">
         {this.showAllStories()}
+        </p>
       </div>
     );
   }
