@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import actions from "../api";
+import PetFinder from "./PetFinder";
 
 class Home extends Component {
   state = {
@@ -28,7 +29,7 @@ class Home extends Component {
     return (
       <div>
         Home
-        {this.showComment()}
+        <PetFinder />
       </div>
     );
   }

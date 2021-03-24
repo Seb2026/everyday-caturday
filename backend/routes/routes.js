@@ -100,6 +100,8 @@ router.delete("/rescue-story/delete/:id", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+
+
 //   <input type="text" name="name" placeholder="Cat's Name" />
 //   <br />
 //   <input type="number" name="age" placeholder="Age" /> <br />
