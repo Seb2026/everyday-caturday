@@ -10,9 +10,16 @@ class RescueStories extends Component {
     story: "",
     imageUrl: "",
     listOfStories: [],
+    loggedInUser: null,
+    hidden: true,
   };
 
-  componentDidMount() {
+  componentWillReceiveProps(nextProps) {
+    this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] });
+    console.log(this.state.loggedInUser);
+  }
+
+  componentDidMount(nextProps) {
     axios.get("http://localhost:5000/api/rescue-story").then((response) => {
       this.setState({
         listOfStories: response.data,
@@ -66,10 +73,17 @@ class RescueStories extends Component {
     console.log("Image file", file);
   };
 
+  showForm = () => {
+    this.setState({ hidden: !this.state.hidden });
+  };
+
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        {this.state.loggedInUser && (
+          <button onClick={this.showForm}>Add story</button>
+        )}
+        <form onSubmit={this.handleSubmit} hidden={this.state.hidden}>
           <input
             onChange={this.handleChange}
             type="text"
