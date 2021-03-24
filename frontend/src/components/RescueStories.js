@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component, useState } from "react";
-
+import { Link } from "react-router-dom";
 
 class RescueStories extends Component {
   state = {
@@ -9,9 +9,45 @@ class RescueStories extends Component {
     breed: "",
     story: "",
     imageUrl: "",
+    listOfStories: [],
   };
 
-  
+  componentDidMount() {
+    axios.get("http://localhost:5000/api/rescue-story").then((response) => {
+      this.setState({
+        listOfStories: response.data,
+      });
+    });
+  }
+
+  deleteStory = (id) => {
+    axios
+      .delete(`http://localhost:5000/api/rescue-story/delete/${id}`)
+      .then(() => {
+        console.log("deleted frontend");
+      })
+      .catch((err) => console.log(err));
+    this.props.history.push("/");
+  };
+
+  showAllStories = () => {
+    return this.state.listOfStories.map((eachStory) => {
+      return (
+        <ul key={eachStory._id}>
+          <li>Name: {eachStory.name}</li>
+          <li>Age: {eachStory.age}</li>
+          <li>Breed: {eachStory.breed}</li>
+          <li>Story: {eachStory.story}</li>
+          <li>Made by: {eachStory.userId.username}</li>
+          {/* onChange={(e) => this.handleChange(e)} */}
+          <button onClick={() => this.deleteStory(eachStory._id)}>
+            Delete
+          </button>
+        </ul>
+      );
+    });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     axios.post("http://localhost:5000/api/rescue-story", this.state, {
@@ -66,13 +102,10 @@ class RescueStories extends Component {
           <br />
           <label>Show off your beautiful Furbaby!</label>
           <br />
-          <input
-            type="file"
-            name="imageUrl"
-            onChange={this.handleFileChange}
-          />
+          <input type="file" name="imageUrl" onChange={this.handleFileChange} />
           <button>Submit</button>
         </form>
+        {this.showAllStories()}
       </div>
     );
   }

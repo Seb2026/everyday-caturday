@@ -137,6 +137,7 @@ class App extends Component {
             <Link to="/cat-list">Cats</Link>
             <Link to="/rescueStories">RescueStories</Link>
             <Link to="/login">Login</Link>
+
             {/* {this.state.user.email ? ( */}
             {/* ) : ( */}
             {/* )} */}
