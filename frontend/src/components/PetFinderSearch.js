@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 
-export default class PetFinder extends Component {
+export default class PetFinderSearch extends Component {
   state = {
     location: "",
   };
 
-  componentDidMount() {
+  giveData = () => {
     let key = "Ww2Mo8xNzXhbFxBtwEN3er2rnOqCUAmamXIQ1AhdCA0Yd4ueb1";
     let secret = "EkIYCERn1x0yevjN5f1VPwEXgaP7pNQ07s3bBBG7";
 
     // Call details
-    let type = "cat";
-    let status = "adoptable";
-    let location = "33131";
+    const type = "cat";
+    const status = "adoptable";
+    let location = this.state.location;
 
     // Call the API
     // This is a POST request, because we need the API to generate a new token for us
@@ -33,7 +33,8 @@ export default class PetFinder extends Component {
       })
       .then(function (data) {
         // Log the API data
-        console.log("token", data);
+        // console.log("token", data);
+        console.log(location);
 
         // Return a second API call
         // This one uses the token we received for authentication
@@ -64,28 +65,30 @@ export default class PetFinder extends Component {
         // Log any errors
         console.log("something went wrong", err);
       });
-  }
+  };
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ [e.target.name]: e.target.value });
+
+    this.giveData();
+  };
+
+  handleLocation = (e) => {
+    console.log("hello: ", e.target.name, "0-0-0-0-0-", e.target.value);
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      console.log("--------->", this.state)
+    );
   };
 
   render() {
     return (
       <div>
-        <p>
-          Studies have shown that cats have a calming effect on their owners,
-          from the soothing action of petting to purring being an aid in falling
-          asleep. Cat owners can reduce tensions by just stroking their furry
-          friend’s head. Petting a cat releases endorphins into the brain, which
-          makes you happier. Also, cats have the softest fur! Cats can even play
-          a part in lowering your blood pressure and risk of a heart attack. One
-          10-year study has even shown that cat owners were 30% less likely to
-          die of a heart attack or stroke than non-cat owners.
-        </p>
-        <p>Adopt a cat today!</p>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="location" placeholder="City or Zip Code" />
+          <input
+            type="text"
+            name="location"
+            placeholder="City or Zip Code"
+            onChange={this.handleLocation}
+          />
           <button type="submit">Search</button>
         </form>
       </div>

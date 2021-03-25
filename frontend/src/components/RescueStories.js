@@ -47,9 +47,9 @@ class RescueStories extends Component {
           <span className="attributes">Story:</span> {eachStory.story}<br /> <br />
           <span className="attributes">Made by:</span> {eachStory.userId.username}<br /> <br />
           {/* onChange={(e) => this.handleChange(e)} */}
-          <button onClick={() => this.deleteStory(eachStory._id)}>
+          {/* <button onClick={() => this.deleteStory(eachStory._id)}>
             Delete
-          </button>
+          </button> */}
         </div>
       );
     });

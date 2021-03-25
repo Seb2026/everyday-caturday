@@ -10,7 +10,7 @@ import Profile from "./components/Profile";
 import { Switch, Route, Link } from "react-router-dom";
 import AuthService from "./components/auth/auth-service";
 import Login from "./components/auth/Login";
-import PetFinder from "./components/PetFinder";
+import PetFinderSearch from "./components/PetFinderSearch";
 
 class App extends Component {
   state = {
@@ -131,13 +131,12 @@ class App extends Component {
                 <Profile userInSession={this.state.loggedInUser} {...props} />
               )}
             />
-            
+
             <Route
               exact
-              path="/petFinder"
-              render={(props) => <PetFinder {...props} />}
+              path="/petFinderSearch"
+              render={(props) => <PetFinderSearch {...props} />}
             />
-
           </Switch>
         </div>
       );
