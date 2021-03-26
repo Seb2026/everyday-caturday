@@ -11,6 +11,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import AuthService from "./components/auth/auth-service";
 import Login from "./components/auth/Login";
 import PetFinderSearch from "./components/PetFinderSearch";
+import CarouselComponent from "./components/CarouselComponent";
 
 class App extends Component {
   state = {
@@ -137,6 +138,9 @@ class App extends Component {
               path="/petFinderSearch"
               render={(props) => <PetFinderSearch {...props} />}
             />
+
+            <Route
+            exact path="/carousel" render={(props) => <CarouselComponent {...props} />} />
           </Switch>
         </div>
       );

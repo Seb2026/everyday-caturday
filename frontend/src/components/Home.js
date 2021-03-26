@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import actions from "../api";
 import PetFinderSearch from "./PetFinderSearch";
+import CarouselComponent from "./CarouselComponent";
 
 class Home extends Component {
   state = {
@@ -28,7 +29,8 @@ class Home extends Component {
   render() {
     return (
       <div>
-       <p>
+        <CarouselComponent />
+        <p>
           Studies have shown that cats have a calming effect on their owners,
           from the soothing action of petting to purring being an aid in falling
           asleep. Cat owners can reduce tensions by just stroking their furry
