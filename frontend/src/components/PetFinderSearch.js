@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
-
 export default class PetFinderSearch extends Component {
   state = {
-
     location: "",
+    rescueCats: [],
   };
 
   giveData = () => {
@@ -30,11 +27,11 @@ export default class PetFinderSearch extends Component {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     })
-      .then(function (resp) {
+      .then((resp) => {
         // Return the response as JSON
         return resp.json();
       })
-      .then(function (data) {
+      .then((data) => {
         // Log the API data
         // console.log("token", data);
         console.log(location);
@@ -56,15 +53,19 @@ export default class PetFinderSearch extends Component {
           }
         );
       })
-      .then(function (resp) {
+      .then((resp) => {
         // Return the API response as JSON
+        console.log("------->", resp);
         return resp.json();
       })
-      .then(function (data) {
+      .then((data) => {
         // Log the pet data
-        console.log("pets", data);
+        console.log("pets", data.animals);
+        // console.log('1-1-1-1-', this.state);
+        this.setState({ rescueCats: data.animals });
+        console.log(this.state);
       })
-      .catch(function (err) {
+      .catch((err) => {
         // Log any errors
         console.log("something went wrong", err);
       });
@@ -75,23 +76,34 @@ export default class PetFinderSearch extends Component {
   };
 
   handleLocation = (e) => {
-    console.log("hello: ", e.target.name, "0-0-0-0-0-", e.target.value);
+    // console.log("hello: ", e.target.name, "0-0-0-0-0-", e.target.value);
     this.setState({ [e.target.name]: e.target.value }, () =>
       console.log("--------->", this.state)
     );
   };
 
   allAvailableRescueCats = () => {
-    return this.state.filteredCats.map((eachRescueCat) => {
+    return this.state.rescueCats.map((eachRescueCat) => {
       console.log(eachRescueCat.image);
       return (
         <div key={eachRescueCat._id}>
           <div className="cat">
-            <img src={eachRescueCat.image?.url} alt=" unavailable" width="200vw" />
+            {!eachRescueCat.primary_photo_cropped ? (
+              <img
+                src="../images/home-is-where-the-cat-is.jpg"
+                alt="Home is where the cat is"
+              />
+            ) : (
+              <img
+                src={eachRescueCat.primary_photo_cropped?.small}
+                alt=" unavailable"
+                width="200vw"
+              />
+            )}
             <br />
-            <Link to={`/cat-detail/${eachRescueCat.id}`}>
-              <h3>{eachRescueCat.name}</h3>
-            </Link>
+            <a href={eachRescueCat.url} target="_blank" rel="noreferrer">
+              {eachRescueCat.name}
+            </a>
           </div>
         </div>
       );
@@ -110,6 +122,7 @@ export default class PetFinderSearch extends Component {
           />
           <button type="submit">Search</button>
         </form>
+        <div className="cat-grid">{this.allAvailableRescueCats()}</div>
       </div>
     );
   }
