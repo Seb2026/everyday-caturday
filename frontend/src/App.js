@@ -213,6 +213,12 @@ class App extends Component {
 
             <Route
               exact
+              path="/petFinderSearch"
+              render={(props) => <PetFinderSearch {...props} />}
+            />
+
+            <Route
+              exact
               path="/profile"
               render={(props) => (
                 <Profile

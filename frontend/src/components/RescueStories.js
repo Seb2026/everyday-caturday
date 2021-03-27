@@ -41,6 +41,7 @@ class RescueStories extends Component {
     return this.state.listOfStories.map((eachStory) => {
       return (
         <div className="cat" key={eachStory._id}>
+          <img className="rescueImg" src={eachStory.imageUrl} alt='Cat Pic' /> <br />
           <span className="attributes">Name:</span> {eachStory.name}<br /> <br />
           <span className="attributes">Age:</span> {eachStory.age}<br /> <br />
           <span className="attributes">Breed:</span> {eachStory.breed}<br /> <br />
