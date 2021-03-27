@@ -80,23 +80,14 @@ class App extends Component {
             <br />
             Caturday
           </h1>
-          {/* <h2>
-          {this.state.user?.email} <img src={this.state.user?.imageUrl} />
-        </h2> */}
 
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} />} />
             <Route
               exact
-              path="/add-comment"
-              render={(props) => <AddComment {...props} />}
-            />
-            <Route
-              exact
               path="/cat-list"
               render={(props) => <CatList {...props} />}
             />
-
             <Route
               exact
               path="/cat-detail/:id"
@@ -167,27 +158,15 @@ class App extends Component {
             <Link to="/cat-list">Cats</Link>
             <Link to="/rescueStories">RescueStories</Link>
             <Link to="/login">Login</Link>
-
-            {/* {this.state.user.email ? ( */}
-            {/* ) : ( */}
-            {/* )} */}
           </nav>
           <h1>
             Every Day is
             <br />
             Caturday
           </h1>
-          {/* <h2>
-            {this.state.user?.email} <img src={this.state.user?.imageUrl} />
-          </h2> */}
 
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} />} />
-            <Route
-              exact
-              path="/add-comment"
-              render={(props) => <AddComment {...props} />}
-            />
             <Route
               exact
               path="/cat-list"

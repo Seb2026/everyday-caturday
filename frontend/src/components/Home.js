@@ -1,30 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-import actions from "../api";
-import PetFinderSearch from "./PetFinderSearch";
 import CarouselComponent from "./CarouselComponent";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
-  state = {
-    comments: [],
-  };
-
   async componentDidMount() {
-    // let res = await axios.get(`http://localhost:5000/api/getPosts`)
-    // console.log(res)
-    // let res = await actions.getComments();
-    // this.setState({ comments: res.data });
-    let cats = await axios.get(
+    await axios.get(
       `https://api.thecatapi.com/v1/breeds?key=${process.env.xapikey}`
     );
-    // console.log(cats);
   }
-
-  showComment = () => {
-    return this.state.comments.map((eachComment) => {
-      return <li key={eachComment._id}> {eachComment.comment} </li>;
-    });
-  };
 
   render() {
     return (
@@ -40,8 +24,7 @@ class Home extends Component {
           10-year study has even shown that cat owners were 30% less likely to
           die of a heart attack or stroke than non-cat owners.
         </p>
-        <p>Adopt a cat today!</p>
-        <PetFinderSearch />
+        <Link to="/petFinderSearch">Adopt a Cat Today!</Link>
       </div>
     );
   }

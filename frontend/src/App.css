@@ -10,16 +10,18 @@ body {
 nav {
   display: flex;
   justify-content: space-evenly;
-  padding: 20px;
+  padding: 5px;
   box-shadow: 2px 2px 6px 0px rgba(59, 34, 1, 0.3);
+  width: 100%;
 }
 
 nav a {
-  padding: 20px;
+  padding: 5px;
 }
 
-nav a::after {
-  color: darkgray;
+nav a:hover {
+  color: darkgreen;
+  font-weight: bold;
 }
 
 ul {
@@ -28,8 +30,8 @@ ul {
 
 input,
 button {
-  padding: 1rem;
-  font-size: 1.5rem;
+  /* padding: 1rem; */
+  font-size: 1.25rem;
 }
 
 /* .catGrid {
@@ -133,4 +135,10 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   align-content: center;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
