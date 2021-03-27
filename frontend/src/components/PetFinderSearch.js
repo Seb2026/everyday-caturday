@@ -68,8 +68,8 @@ export default class PetFinderSearch extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-
     this.giveData();
+    
   };
 
   handleLocation = (e) => {

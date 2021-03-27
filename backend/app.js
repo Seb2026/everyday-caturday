@@ -49,6 +49,7 @@ app.use(passport.session());
 //Our connection to the frontend >>> All our routes for now
 app.use(`/api`, require("./routes/routes"));
 app.use("/api", require("./routes/auth-routes"));
+app.use("/api", require("./routes/fileUpload-routes"));
 
 //Sends our one single page on all requests
 app.get("*", (req, res, next) => {
