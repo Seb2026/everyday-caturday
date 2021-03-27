@@ -19,7 +19,7 @@ class RescueStories extends Component {
     console.log(this.state.loggedInUser);
   }
 
-  componentDidMount(nextProps) {
+  componentDidMount() {
     axios.get("http://localhost:5000/api/rescue-story").then((response) => {
       this.setState({
         listOfStories: response.data,

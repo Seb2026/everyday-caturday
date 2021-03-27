@@ -92,6 +92,15 @@ router.get("/rescue-story", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+router.get("/rescue-story-user", (req, res) => {
+  RescueStory.find()
+    .populate({ path: "userId", select: "username" })
+    .then((foundStories) => {
+      res.json(foundStories);
+    })
+    .catch((err) => res.json(err));
+});
+
 router.delete("/rescue-story/delete/:id", (req, res) => {
   RescueStory.findByIdAndRemove(req.params.id)
     .then(() => {
@@ -99,8 +108,6 @@ router.delete("/rescue-story/delete/:id", (req, res) => {
     })
     .catch((err) => res.json(err));
 });
-
-
 
 //   <input type="text" name="name" placeholder="Cat's Name" />
 //   <br />
