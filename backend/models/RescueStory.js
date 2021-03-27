@@ -5,7 +5,7 @@ const rescueStorySchema = new Schema({
   breed: String,
   age: Number,
   story: String,
-  image: String,
+  imageUrl: String,
   userId: { type: Schema.Types.ObjectId, ref: "User" },
 });
 

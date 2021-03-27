@@ -19,31 +19,35 @@ export default class AddStory extends Component {
 
   componentDidMount() {
     this.setState({
-      loggedInUser: this.props.userInSession
-        ? this.props.userInSession
-        : null,
+      loggedInUser: this.props.userInSession ? this.props.userInSession : null,
     });
+
+    console.log(this.state);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // axios.post("http://localhost:5000/api/rescue-story", this.state, {
-    //   withCredentials: true,
-    // });
-    service.saveNewThing(this.state).then((res) => {
-      console.log("added: ", res);
-      if (res.errors) {
-        this.setState({
-          message: `All fields are required. `,
-        });
-        return;
-      }
-
-      this.props.history.push("/");
-    })
-    .catch(err => {
-      console.log('Error while adding the thing: ', err.response.data);
-    });
+    axios
+      .post("http://localhost:5000/api/rescue-story", this.state, {
+        withCredentials: true,
+      })
+      // service
+      //   .saveNewThing(this.state)
+      //   .then((res) => {
+      //     console.log("added: ", res);
+      //     if (res.errors) {
+      //       this.setState({
+      //         message: `All fields are required. `,
+      //       });
+      //       return;
+      //     }
+      .then(() => {
+        this.props.history.push("/");
+      })
+      //   })
+      .catch((err) => {
+        console.log("Error while adding the thing: ", err.response.data);
+      });
   };
 
   handleFileUpload = (e) => {
@@ -102,7 +106,7 @@ export default class AddStory extends Component {
           <br />
           <label>Show off your beautiful Furbaby!</label>
           <br />
-          <input type='file' onChange={(e)=> this.handleFileUpload(e)}/>
+          <input type="file" onChange={(e) => this.handleFileUpload(e)} />
           <button>Submit</button>
         </form>
       </div>

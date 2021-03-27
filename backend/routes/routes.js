@@ -76,8 +76,8 @@ router.post("/logmein", async (req, res) => {
 });
 
 router.post("/rescue-story", (req, res) => {
-  const { name, age, breed, story, image } = req.body;
-  RescueStory.create({ name, age, breed, story, image, userId: req.user._id })
+  const { name, age, breed, story, imageUrl } = req.body;
+  RescueStory.create({ name, age, breed, story, imageUrl , userId: req.user._id})
     .then((createdStory) => {
       res.json(createdStory);
     })
