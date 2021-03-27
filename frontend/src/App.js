@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Home from "./components/Home";
-import AddComment from "./components/AddComment";
 import CatList from "./components/CatList";
 import CatDetail from "./components/CatDetail";
 import RescueStories from "./components/RescueStories";
@@ -51,16 +50,6 @@ class App extends Component {
       this.setState({ loggedInUser: null });
     });
   };
-
-  // async componentDidMount() {
-  //   let user = await actions.getUser();
-  //   console.log("user is ", user);
-  //   this.setState({ user });
-  // }
-
-  // setUser = (user) => {
-  //   this.setState({ user });
-  // };
 
   render() {
     this.fetchUser();
@@ -159,9 +148,7 @@ class App extends Component {
         </div>
       );
     } else {
-      return (
-        // <main className="App">
-        <div>
+      return (        <div>
           <nav>
             <Link to="/">Home</Link>
             <Link to="/cat-list">Cats</Link>

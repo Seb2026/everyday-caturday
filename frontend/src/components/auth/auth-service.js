@@ -26,7 +26,6 @@ class AuthService {
   };
 
   logout = () => {
-    console.log("testttt");
     return this.service.post("/logout", {}).then((response) => response.data);
   };
 }

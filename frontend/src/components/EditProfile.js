@@ -14,12 +14,9 @@ export default class EditProfile extends Component {
   componentDidMount() {
     const { params } = this.props.match;
 
-    
-
     axios
       .get(`http://localhost:5000/api/editstory/${params.id}`)
       .then((response) => {
-        console.log(response.data);
         this.setState({
           editedName: response.data.name,
           editedBreed: response.data.breed,
@@ -31,7 +28,6 @@ export default class EditProfile extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value, e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -51,7 +47,7 @@ export default class EditProfile extends Component {
         story,
       })
       .then(() => {
-        this.props.history.push("/profile");
+        this.props.history.push(`/`);
       })
       .catch((err) => console.log(err));
   };

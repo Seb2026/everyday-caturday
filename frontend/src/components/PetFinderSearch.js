@@ -33,8 +33,6 @@ export default class PetFinderSearch extends Component {
       })
       .then((data) => {
         // Log the API data
-        // console.log("token", data);
-        console.log(location);
 
         // Return a second API call
         // This one uses the token we received for authentication
@@ -55,15 +53,10 @@ export default class PetFinderSearch extends Component {
       })
       .then((resp) => {
         // Return the API response as JSON
-        console.log("------->", resp);
         return resp.json();
       })
       .then((data) => {
-        // Log the pet data
-        console.log("pets", data.animals);
-        // console.log('1-1-1-1-', this.state);
         this.setState({ rescueCats: data.animals });
-        console.log(this.state);
       })
       .catch((err) => {
         // Log any errors
@@ -76,15 +69,12 @@ export default class PetFinderSearch extends Component {
   };
 
   handleLocation = (e) => {
-    // console.log("hello: ", e.target.name, "0-0-0-0-0-", e.target.value);
-    this.setState({ [e.target.name]: e.target.value }, () =>
-      console.log("--------->", this.state)
+    this.setState({ [e.target.name]: e.target.value }
     );
   };
 
   allAvailableRescueCats = () => {
     return this.state.rescueCats.map((eachRescueCat) => {
-      console.log(eachRescueCat.image);
       return (
         <div key={eachRescueCat._id}>
           <div className="cat">

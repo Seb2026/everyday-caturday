@@ -31,20 +31,9 @@ export default class AddStory extends Component {
       .post("http://localhost:5000/api/rescue-story", this.state, {
         withCredentials: true,
       })
-      // service
-      //   .saveNewThing(this.state)
-      //   .then((res) => {
-      //     console.log("added: ", res);
-      //     if (res.errors) {
-      //       this.setState({
-      //         message: `All fields are required. `,
-      //       });
-      //       return;
-      //     }
       .then(() => {
-        this.props.history.push("/");
+        this.props.history.push("/rescueStories");
       })
-      //   })
       .catch((err) => {
         console.log("Error while adding the thing: ", err.response.data);
       });
@@ -56,8 +45,6 @@ export default class AddStory extends Component {
     service
       .handleUpload(uploadData)
       .then((response) => {
-        // console.log('response is: ', response);
-        // after the console.log we can see that response carries 'secure_url' which we can use to update the state
         this.setState({ imageUrl: response.secure_url });
       })
       .catch((err) => {
@@ -66,7 +53,6 @@ export default class AddStory extends Component {
   };
 
   handleChange = (e) => {
-    console.log(e.target.value, e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   };
 

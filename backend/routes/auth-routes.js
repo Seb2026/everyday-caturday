@@ -3,15 +3,12 @@ const authRoutes = express.Router();
 
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-//test for push
 // require the user model !!!!
 const User = require("../models/User");
 
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-
-  console.log("----------", username, password);
 
   if (!username || !password) {
     res.status(400).json({ message: "Provide username and password" });
@@ -60,7 +57,6 @@ authRoutes.post("/signup", (req, res, next) => {
           res.status(500).json({ message: "Login after signup went bad." });
           return;
         }
-        console.log(aNewUser);
         // Send the user's information to the frontend
         // We can use also: res.status(200).json(req.user);
         res.status(200).json(aNewUser);
@@ -71,7 +67,6 @@ authRoutes.post("/signup", (req, res, next) => {
 
 authRoutes.post("/logout", (req, res, next) => {
   // req.logout() is defined by passport
-  console.log("backend");
   req.logout();
   res.status(200).json({ message: "Log out success!" });
 });

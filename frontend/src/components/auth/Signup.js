@@ -79,7 +79,6 @@ class Signup extends Component {
           <Link to={"/login"}> Login</Link>
         </p>
       </div>
-      // more code will be added here
     );
   }
 }

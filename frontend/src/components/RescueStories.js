@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { Component, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 
 class RescueStories extends Component {
   state = {
@@ -16,7 +15,6 @@ class RescueStories extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] });
-    console.log(this.state.loggedInUser);
   }
 
   componentDidMount() {
@@ -47,11 +45,7 @@ class RescueStories extends Component {
           <span className="attributes">Breed:</span> {eachStory.breed}<br /> <br />
           <span className="attributes">Story:</span> {eachStory.story}<br /> <br />
           <span className="attributes">Made by:</span> {eachStory.userId.username}<br /> <br />
-          {/* onChange={(e) => this.handleChange(e)} */}
-          {/* <button onClick={() => this.deleteStory(eachStory._id)}>
-            Delete
-          </button> */}
-        </div>
+         </div>
       );
     });
   };
@@ -65,7 +59,6 @@ class RescueStories extends Component {
   };
 
   handleChange = (e) => {
-    console.log(e.target.value, e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   };
 

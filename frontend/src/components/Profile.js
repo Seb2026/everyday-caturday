@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import actions from "../api";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -23,10 +22,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    // ----------------------------------
     axios.get("http://localhost:5000/api/rescue-story").then((response) => {
-      console.log(response.data);
-      console.log(`-----`, this.props);
       this.setState({
         listOfUserStories: response.data,
         loggedInUser: this.props.userInSession
@@ -34,12 +30,10 @@ class Profile extends Component {
           : null,
       });
     });
-    console.log(this.state.loggedInUser);
 
     axios
       .get(`http://localhost:5000/api/profile/${this.props.match.params.id}`)
       .then((userRes) => {
-        console.log(userRes.data);
         this.setState({
           username: userRes.data.username,
           firstName: userRes.data.firstName,
@@ -54,6 +48,7 @@ class Profile extends Component {
       if (eachStory.userId._id === this.state.loggedInUser._id)
         return (
           <div className="cat" key={eachStory._id}>
+          <img className="rescueImg" src={eachStory.imageUrl} alt='Cat Pic' /> <br />
             <span className="attributes">Name:</span> {eachStory.name}
             <br /> <br />
             <span className="attributes">Age:</span> {eachStory.age}
@@ -84,7 +79,7 @@ class Profile extends Component {
         console.log("deleted frontend");
       })
       .catch((err) => console.log(err));
-    this.props.history.push("/rescueStories");
+      window.location.reload(false)
   };
 
   editStory = (id) => {
@@ -107,7 +102,6 @@ class Profile extends Component {
   };
 
   handleChange = (e) => {
-    console.log(e.target.value, e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -120,7 +114,6 @@ class Profile extends Component {
         withCredentials: true,
       }
     );
-    this.props.history.push("/");
   };
 
   showForm = () => {
@@ -137,10 +130,11 @@ class Profile extends Component {
           <label>
             Username:
             <input
-              onChange={this.handleChange}
+              className="username"
               value={this.state.username}
               name="username"
               type="text"
+              readOnly={true}
             />
           </label>
 
@@ -174,40 +168,23 @@ class Profile extends Component {
             />
           </label>
 
-          <button>Update</button>
+          <button onClick={() => window.location.reload(false)}>Update</button>
         </form>
       </>
     );
   };
 
-  // async componentDidMount() {
-  //   let res = await actions.getMyComments();
-  //   console.log(res);
-  //   this.setState({ comments: res.data });
-  // }
-
-  // logOut = () => {
-  //   localStorage.removeItem("token");
-  //   this.props.setUser({});
-  // };
-
-  // showMyComments = () => {
-  //   return this.state.comments.map((eachComment) => {
-  //     return <li key={eachComment._id}> {eachComment.comments} </li>;
-  //   });
-  // };
-
   render() {
     if (this.state.loggedInUser) {
       return (
         <div>
-          {this.showAllStories()}
-          <br />
           {this.editProfileForm()}
+          <br />
+          <div className="cat-grid">{this.showAllStories()}</div>
         </div>
       );
     } else {
-      return <div>Please sign up</div>;
+      return <div>&nbsp;</div>;
     }
   }
 }
