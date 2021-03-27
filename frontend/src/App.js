@@ -12,6 +12,7 @@ import AuthService from "./components/auth/auth-service";
 import Login from "./components/auth/Login";
 import PetFinderSearch from "./components/PetFinderSearch";
 import CarouselComponent from "./components/CarouselComponent";
+import EditProfile from "./components/EditProfile";
 
 class App extends Component {
   state = {
@@ -132,6 +133,16 @@ class App extends Component {
                 <Profile userInSession={this.state.loggedInUser} {...props} />
               )}
             />
+            <Route
+              exact
+              path="/edit/:id"
+              render={(props) => (
+                <EditProfile
+                  userInSession={this.state.loggedInUser}
+                  {...props}
+                />
+              )}
+            />
 
             <Route
               exact
@@ -140,7 +151,10 @@ class App extends Component {
             />
 
             <Route
-            exact path="/carousel" render={(props) => <CarouselComponent {...props} />} />
+              exact
+              path="/carousel"
+              render={(props) => <CarouselComponent {...props} />}
+            />
           </Switch>
         </div>
       );

@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import actions from "../api";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   state = {
     loggedInUser: null,
     listOfUserStories: [],
+    editedName: "",
+    editedBreed: "",
+    editedAge: "",
+    editedStory: "",
   };
 
   componentWillReceiveProps(nextProps) {
@@ -37,13 +42,45 @@ class Profile extends Component {
             <span className="attributes">Made by:</span>{" "}
             {eachStory.userId.username}
             <br /> <br />
-            {/* onChange={(e) => this.handleChange(e)} */}
-            {/* <button onClick={() => this.deleteStory(eachStory._id)}>
-            Delete
-          </button> */}
+            <button onClick={() => this.deleteStory(eachStory._id)}>
+              Delete
+            </button>
+            <br />
+            <Link to={`/edit/${eachStory._id}`}>
+              <button>Edit</button>
+            </Link>
           </div>
         );
     });
+  };
+
+  deleteStory = (id) => {
+    axios
+      .delete(`http://localhost:5000/api/rescue-story/delete/${id}`)
+      .then(() => {
+        console.log("deleted frontend");
+      })
+      .catch((err) => console.log(err));
+    this.props.history.push("/rescueStories");
+  };
+
+  editStory = (id) => {
+    const name = this.state.editedName;
+    const breed = this.state.editedBreed;
+    const age = this.state.editedAge;
+    const story = this.state.editedStory;
+
+    axios
+      .put(`http://localhost:5000/api/rescue-story/edit/${id}`, {
+        name,
+        breed,
+        age,
+        story,
+      })
+      .then(() => {
+        this.props.history.push("/rescueStories");
+      })
+      .catch((err) => console.log(err));
   };
 
   // async componentDidMount() {
