@@ -36,6 +36,8 @@ class Signup extends Component {
           });
         }
       });
+
+    this.props.history.push("/");
   };
 
   handleChange = (event) => {
@@ -72,7 +74,6 @@ class Signup extends Component {
           <p>Sign up!</p>
         )}
 
-        
         <p>
           Already have account?
           <Link to={"/login"}> Login</Link>

@@ -20,8 +20,12 @@ class Profile extends Component {
   componentDidMount() {
     axios.get("http://localhost:5000/api/rescue-story").then((response) => {
       console.log(response.data);
+      console.log(`-----`, this.props);
       this.setState({
         listOfUserStories: response.data,
+        loggedInUser: this.props.userInSession
+          ? this.props.userInSession
+          : null,
       });
     });
   }
