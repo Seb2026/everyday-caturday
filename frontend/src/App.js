@@ -72,7 +72,7 @@ class App extends Component {
             <Link to="/cat-list">Cats</Link>
             <Link to="/rescueStories">RescueStories</Link>
             <Link to="/addstory">Add Story</Link>
-            <Link to="/profile">Profile</Link>
+            <Link to={`/profile/${this.state.loggedInUser._id}`}>Profile</Link>
             <Link to="/">
               <button onClick={this.logoutUser}>Logout </button>
             </Link>
@@ -128,7 +128,7 @@ class App extends Component {
 
             <Route
               exact
-              path="/profile"
+              path="/profile/:id"
               render={(props) => (
                 <Profile userInSession={this.state.loggedInUser} {...props} />
               )}

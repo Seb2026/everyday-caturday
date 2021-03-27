@@ -11,6 +11,11 @@ class Profile extends Component {
     editedBreed: "",
     editedAge: "",
     editedStory: "",
+    username: "",
+    firstName: "",
+    lastName: "",
+    location: "",
+    hidden: true,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -18,6 +23,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+    // ----------------------------------
     axios.get("http://localhost:5000/api/rescue-story").then((response) => {
       console.log(response.data);
       console.log(`-----`, this.props);
@@ -28,6 +34,19 @@ class Profile extends Component {
           : null,
       });
     });
+    console.log(this.state.loggedInUser);
+
+    axios
+      .get(`http://localhost:5000/api/profile/${this.props.match.params.id}`)
+      .then((userRes) => {
+        console.log(userRes.data);
+        this.setState({
+          username: userRes.data.username,
+          firstName: userRes.data.firstName,
+          lastName: userRes.data.lastName,
+          location: userRes.data.location,
+        });
+      });
   }
 
   showAllStories = () => {
@@ -87,6 +106,80 @@ class Profile extends Component {
       .catch((err) => console.log(err));
   };
 
+  handleChange = (e) => {
+    console.log(e.target.value, e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    axios.put(
+      `http://localhost:5000/api/edit-user/${this.props.match.params.id}`,
+      this.state,
+      {
+        withCredentials: true,
+      }
+    );
+    this.props.history.push("/");
+  };
+
+  showForm = () => {
+    this.setState({
+      hidden: !this.state.hidden,
+    });
+  };
+
+  editProfileForm = () => {
+    return (
+      <>
+        <button onClick={this.showForm}>Update personal info</button>
+        <form onSubmit={this.handleSubmit} hidden={this.state.hidden}>
+          <label>
+            Username:
+            <input
+              onChange={this.handleChange}
+              value={this.state.username}
+              name="username"
+              type="text"
+            />
+          </label>
+
+          <label>
+            First name:
+            <input
+              onChange={this.handleChange}
+              value={this.state.firstName}
+              name="firstName"
+              type="text"
+            />
+          </label>
+
+          <label>
+            Last name:
+            <input
+              onChange={this.handleChange}
+              value={this.state.lastName}
+              name="lastName"
+              type="text"
+            />
+          </label>
+
+          <label>
+            Location:
+            <input
+              onChange={this.handleChange}
+              value={this.state.location}
+              name="location"
+              type="text"
+            />
+          </label>
+
+          <button>Update</button>
+        </form>
+      </>
+    );
+  };
+
   // async componentDidMount() {
   //   let res = await actions.getMyComments();
   //   console.log(res);
@@ -106,7 +199,13 @@ class Profile extends Component {
 
   render() {
     if (this.state.loggedInUser) {
-      return this.showAllStories();
+      return (
+        <div>
+          {this.showAllStories()}
+          <br />
+          {this.editProfileForm()}
+        </div>
+      );
     } else {
       return <div>Please sign up</div>;
     }

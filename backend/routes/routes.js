@@ -135,6 +135,38 @@ router.put("/edit/:id", (req, res, next) => {
     });
 });
 
+router.get("/profile/:id", (req, res, next) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  User.findById(req.params.id)
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((error) => {
+      res.json(error.response.data);
+    });
+});
+
+router.put("/edit-user/:id", (req, res, next) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: "Specified id is not valid" });
+    return;
+  }
+
+  User.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      res.json({
+        message: `User with ${req.params.id} is updated successfully.`,
+      });
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+});
+
 router.delete("/rescue-story/delete/:id", (req, res) => {
   RescueStory.findByIdAndRemove(req.params.id)
     .then(() => {

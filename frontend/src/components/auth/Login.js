@@ -21,6 +21,8 @@ class Login extends Component {
       .then((response) => {
         this.setState({ username: "", password: "" });
         this.props.getUser(response);
+        // console.log(response);
+        this.props.history.push(`/profile/${response._id}`);
       })
       .catch((error) => {
         if (error.response) {
@@ -30,8 +32,6 @@ class Login extends Component {
           });
         }
       });
-
-    this.props.history.push("/profile");
   };
 
   handleChange = (event) => {
