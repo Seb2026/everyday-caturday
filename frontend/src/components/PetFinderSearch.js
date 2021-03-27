@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 
 export default class PetFinderSearch extends Component {
   state = {
+
     location: "",
   };
 
@@ -69,7 +72,6 @@ export default class PetFinderSearch extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.giveData();
-    
   };
 
   handleLocation = (e) => {
@@ -77,6 +79,23 @@ export default class PetFinderSearch extends Component {
     this.setState({ [e.target.name]: e.target.value }, () =>
       console.log("--------->", this.state)
     );
+  };
+
+  allAvailableRescueCats = () => {
+    return this.state.filteredCats.map((eachRescueCat) => {
+      console.log(eachRescueCat.image);
+      return (
+        <div key={eachRescueCat._id}>
+          <div className="cat">
+            <img src={eachRescueCat.image?.url} alt=" unavailable" width="200vw" />
+            <br />
+            <Link to={`/cat-detail/${eachRescueCat.id}`}>
+              <h3>{eachRescueCat.name}</h3>
+            </Link>
+          </div>
+        </div>
+      );
+    });
   };
 
   render() {
