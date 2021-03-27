@@ -13,7 +13,6 @@ class Cat extends Component {
     axios
       .get(`https://api.thecatapi.com/v1/breeds?key=${process.env.xapikey}`)
       .then((response) => {
-        // console.log(response.data);
         this.setState({
           cats: response.data,
           filteredCats: response.data,
@@ -23,7 +22,6 @@ class Cat extends Component {
             `https://api.thecatapi.com/v1/images/search?breed_id=${this.props.match.params.id}`
           )
           .then((response) => {
-            console.log("-=-=-=-=-=-=-=-=-", response.data[0].url);
             this.setState({
               image: response.data[0].url,
             });
@@ -33,14 +31,11 @@ class Cat extends Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value, e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   };
 
   search = (e) => {
     let searchCats = this.state.cats.filter((elem) => {
-      // if(elem.)
-      // return elem.name.toLowerCase().includes(e.target.value.toLowerCase());
       if (
         elem.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
         elem.description.toLowerCase().includes(e.target.value.toLowerCase()) ||
@@ -54,7 +49,6 @@ class Cat extends Component {
 
   allCats = () => {
     return this.state.filteredCats.map((eachCat) => {
-      console.log(eachCat.image);
       return (
         <div key={eachCat._id}>
           <div className="cat">
@@ -79,10 +73,7 @@ class Cat extends Component {
           type="text"
         />
 
-        <div className="cat-grid">
-          {/* <HomeButton /> */}
-          {this.allCats()}
-        </div>
+        <div className="cat-grid">{this.allCats()}</div>
       </>
     );
   }

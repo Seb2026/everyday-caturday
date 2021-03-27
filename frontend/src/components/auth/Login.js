@@ -21,7 +21,6 @@ class Login extends Component {
       .then((response) => {
         this.setState({ username: "", password: "" });
         this.props.getUser(response);
-        // console.log(response);
         this.props.history.push(`/profile/${response._id}`);
       })
       .catch((error) => {
@@ -64,7 +63,7 @@ class Login extends Component {
         {errorStatus ? (
           <p className="error">{this.state.errorMsg}</p>
         ) : (
-          <p>Login</p>
+          <p>&nbsp;</p>
         )}
         <p>
           Don't have account?

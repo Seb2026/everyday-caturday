@@ -146,3 +146,7 @@ h1 {
 .rescueImg {
   height: 20rem; 
 }
+
+.username {
+  border: 0;
+}
