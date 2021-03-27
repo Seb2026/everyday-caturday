@@ -13,6 +13,7 @@ import Login from "./components/auth/Login";
 import PetFinderSearch from "./components/PetFinderSearch";
 import CarouselComponent from "./components/CarouselComponent";
 import EditProfile from "./components/EditProfile";
+import AddStory from "./components/AddStory";
 
 class App extends Component {
   state = {
@@ -70,6 +71,7 @@ class App extends Component {
             <Link to="/">Home</Link>
             <Link to="/cat-list">Cats</Link>
             <Link to="/rescueStories">RescueStories</Link>
+            <Link to="/addstory">Add Story</Link>
             <Link to="/profile">Profile</Link>
             <Link to="/">
               <button onClick={this.logoutUser}>Logout </button>
@@ -114,6 +116,13 @@ class App extends Component {
                   userInSession={this.state.loggedInUser}
                   {...props}
                 />
+              )}
+            />
+            <Route
+              exact
+              path="/addstory"
+              render={(props) => (
+                <AddStory userInSession={this.state.loggedInUser} {...props} />
               )}
             />
 
