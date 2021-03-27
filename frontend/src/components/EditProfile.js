@@ -14,6 +14,8 @@ export default class EditProfile extends Component {
   componentDidMount() {
     const { params } = this.props.match;
 
+    
+
     axios
       .get(`http://localhost:5000/api/editstory/${params.id}`)
       .then((response) => {
