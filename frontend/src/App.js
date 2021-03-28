@@ -148,7 +148,8 @@ class App extends Component {
         </div>
       );
     } else {
-      return (        <div>
+      return (
+        <div>
           <nav>
             <Link to="/">Home</Link>
             <Link to="/cat-list">Cats</Link>
@@ -167,6 +168,17 @@ class App extends Component {
               exact
               path="/cat-list"
               render={(props) => <CatList {...props} />}
+            />
+
+            <Route
+              exact
+              path="/edit/:id"
+              render={(props) => (
+                <EditProfile
+                  userInSession={this.state.loggedInUser}
+                  {...props}
+                />
+              )}
             />
 
             <Route

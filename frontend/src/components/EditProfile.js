@@ -11,6 +11,10 @@ export default class EditProfile extends Component {
     story: {},
   };
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] });
+  }
+
   componentDidMount() {
     const { params } = this.props.match;
 
@@ -18,6 +22,9 @@ export default class EditProfile extends Component {
       .get(`http://localhost:5000/api/editstory/${params.id}`)
       .then((response) => {
         this.setState({
+          loggedInUser: this.props.userInSession
+            ? this.props.userInSession
+            : null,
           editedName: response.data.name,
           editedBreed: response.data.breed,
           editedAge: response.data.age,
@@ -25,6 +32,7 @@ export default class EditProfile extends Component {
         });
       })
       .catch((error) => console.log(error.response.data));
+    console.log(this.props);
   }
 
   handleChange = (e) => {
@@ -47,7 +55,7 @@ export default class EditProfile extends Component {
         story,
       })
       .then(() => {
-        this.props.history.push(`/`);
+        this.props.history.push(`/profile/${this.props.userInSession._id}`);
       })
       .catch((err) => console.log(err));
   };
