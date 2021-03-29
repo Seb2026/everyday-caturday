@@ -9,16 +9,20 @@ const User = require("../models/User");
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const location = req.body.location;
+  const email = req.body.email;
 
-  if (!username || !password) {
-    res.status(400).json({ message: "Provide username and password" });
+  if (!username || !password || !email) {
+    res.status(400).json({ message: "Fields with * are required" });
     return;
   }
 
   if (password.length < 7) {
     res.status(400).json({
       message:
-        "Please make your password at least 8 characters long for security purposes.",
+        "Password requirements: At least 8 characters, Needs to have at least one number, one lowercase and one uppercase letter.",
     });
     return;
   }
@@ -40,6 +44,10 @@ authRoutes.post("/signup", (req, res, next) => {
     const aNewUser = new User({
       username: username,
       password: hashPass,
+      firstName: firstName,
+      lastName: lastName,
+      location: location,
+      email: email,
     });
 
     aNewUser.save((err) => {

@@ -6,6 +6,10 @@ class Signup extends Component {
   state = {
     username: "",
     password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    location: "",
     errorStatus: false,
     errorMsg: "",
   };
@@ -21,9 +25,10 @@ class Signup extends Component {
     const firstName = this.state.firstName;
     const lastName = this.state.lastName;
     const location = this.state.location;
+    const email = this.state.email;
 
     this.service
-      .signup(username, password, firstName, lastName, location)
+      .signup(username, password, firstName, lastName, location, email)
       .then((response) => {
         this.setState({
           username: "",
@@ -31,6 +36,7 @@ class Signup extends Component {
           firstName: "",
           lastName: "",
           location: "",
+          email: "",
         });
         this.props.getUser(response);
       })
@@ -43,7 +49,7 @@ class Signup extends Component {
         }
       });
 
-    this.props.history.push("/");
+    // this.props.history.push("/");
   };
 
   handleChange = (event) => {
@@ -62,6 +68,7 @@ class Signup extends Component {
             type="text"
             name="firstName"
             value={this.state.firstName}
+            required
             onChange={(e) => this.handleChange(e)}
           />
           <label> Last Name: </label>
@@ -73,11 +80,19 @@ class Signup extends Component {
           />
           <br />
           <br />
-          <label>Location:</label>
+          <label> Location: </label>
           <input
             type="text"
             name="location"
             value={this.state.location}
+            onChange={(e) => this.handleChange(e)}
+          />
+          <label> Email: </label>
+          <input
+            type="email"
+            name="email"
+            required
+            value={this.state.email}
             onChange={(e) => this.handleChange(e)}
           />
           <br />
@@ -85,10 +100,11 @@ class Signup extends Component {
           <p>
             <label>Create your Login</label>
           </p>
-          <label>Username: </label>
+          <label> Username: </label>
           <input
             type="text"
             name="username"
+            required
             value={this.state.username}
             onChange={(e) => this.handleChange(e)}
           />
@@ -97,11 +113,13 @@ class Signup extends Component {
           <input
             name="password"
             type="password"
+            required
             value={this.state.password}
             onChange={(e) => this.handleChange(e)}
           />
-
-          <input type="submit" value="Signup" />
+          <p>
+            <button>Sign Up</button>
+          </p>
         </form>
         {errorStatus ? (
           <p className="error">{this.state.errorMsg}</p>
