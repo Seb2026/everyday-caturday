@@ -18,13 +18,19 @@ class Signup extends Component {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
+    const firstName = this.state.firstName;
+    const lastName = this.state.lastName;
+    const location = this.state.location;
 
     this.service
-      .signup(username, password)
+      .signup(username, password, firstName, lastName, location)
       .then((response) => {
         this.setState({
           username: "",
           password: "",
+          firstName: "",
+          lastName: "",
+          location: "",
         });
         this.props.getUser(response);
       })
@@ -51,7 +57,35 @@ class Signup extends Component {
       <div>
         <h1>Sign Up</h1>
         <form onSubmit={this.handleFormSubmit}>
-          <label>username:</label>
+          <label> First Name: </label>
+          <input
+            type="text"
+            name="firstName"
+            value={this.state.firstName}
+            onChange={(e) => this.handleChange(e)}
+          />
+          <label> Last Name: </label>
+          <input
+            type="text"
+            name="lastName"
+            value={this.state.lastName}
+            onChange={(e) => this.handleChange(e)}
+          />
+          <br />
+          <br />
+          <label>Location:</label>
+          <input
+            type="text"
+            name="location"
+            value={this.state.location}
+            onChange={(e) => this.handleChange(e)}
+          />
+          <br />
+          <br />
+          <p>
+            <label>Create your Login</label>
+          </p>
+          <label>Username: </label>
           <input
             type="text"
             name="username"
@@ -59,7 +93,7 @@ class Signup extends Component {
             onChange={(e) => this.handleChange(e)}
           />
 
-          <label>Password:</label>
+          <label> Password: </label>
           <input
             name="password"
             type="password"
@@ -72,7 +106,7 @@ class Signup extends Component {
         {errorStatus ? (
           <p className="error">{this.state.errorMsg}</p>
         ) : (
-          <p>Sign up!</p>
+          <p>&nbsp;</p>
         )}
 
         <p>
