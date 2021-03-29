@@ -13,6 +13,11 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <h1>
+          Every Day is
+          <br />
+          Caturday
+        </h1>
         <CarouselComponent />
         <p>
           Studies have shown that cats have a calming effect on their owners,

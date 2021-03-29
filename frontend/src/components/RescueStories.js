@@ -39,13 +39,20 @@ class RescueStories extends Component {
     return this.state.listOfStories.map((eachStory) => {
       return (
         <div className="cat" key={eachStory._id}>
-          <img className="rescueImg" src={eachStory.imageUrl} alt='Cat Pic' /> <br />
-          <span className="attributes">Name:</span> {eachStory.name}<br /> <br />
-          <span className="attributes">Age:</span> {eachStory.age}<br /> <br />
-          <span className="attributes">Breed:</span> {eachStory.breed}<br /> <br />
-          <span className="attributes">Story:</span> {eachStory.story}<br /> <br />
-          <span className="attributes">Made by:</span> {eachStory.userId.username}<br /> <br />
-         </div>
+          <img className="rescueImg" src={eachStory.imageUrl} alt="Cat Pic" />{" "}
+          <br />
+          <span className="attributes">Name:</span> {eachStory.name}
+          <br /> <br />
+          <span className="attributes">Age:</span> {eachStory.age}
+          <br /> <br />
+          <span className="attributes">Breed:</span> {eachStory.breed}
+          <br /> <br />
+          <span className="attributes">Story:</span> {eachStory.story}
+          <br /> <br />
+          <span className="attributes">Made by:</span>{" "}
+          {eachStory.userId.username}
+          <br /> <br />
+        </div>
       );
     });
   };
@@ -74,6 +81,7 @@ class RescueStories extends Component {
   render() {
     return (
       <div>
+        <h1>Rescue Stories</h1>
         {this.state.loggedInUser && (
           <button onClick={this.showForm}>Add story</button>
         )}
@@ -113,9 +121,7 @@ class RescueStories extends Component {
           <input type="file" name="imageUrl" onChange={this.handleFileChange} />
           <button>Submit</button>
         </form>
-        <p className="cat-grid">
-        {this.showAllStories()}
-        </p>
+        <p className="cat-grid">{this.showAllStories()}</p>
       </div>
     );
   }

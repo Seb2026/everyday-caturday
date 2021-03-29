@@ -69,8 +69,7 @@ export default class PetFinderSearch extends Component {
   };
 
   handleLocation = (e) => {
-    this.setState({ [e.target.name]: e.target.value }
-    );
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   allAvailableRescueCats = () => {
@@ -103,6 +102,7 @@ export default class PetFinderSearch extends Component {
   render() {
     return (
       <div>
+        <h1>Adopt Your Own Cat Today!</h1>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"

@@ -49,6 +49,7 @@ class Signup extends Component {
     const errorStatus = this.state.errorStatus;
     return (
       <div>
+        <h1>Sign Up</h1>
         <form onSubmit={this.handleFormSubmit}>
           <label>username:</label>
           <input

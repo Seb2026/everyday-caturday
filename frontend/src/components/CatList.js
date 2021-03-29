@@ -50,13 +50,15 @@ class Cat extends Component {
   allCats = () => {
     return this.state.filteredCats.map((eachCat) => {
       return (
-        <div key={eachCat._id}>
-          <div className="cat">
-            <img src={eachCat.image?.url} alt=" unavailable" width="200vw" />
-            <br />
-            <Link to={`/cat-detail/${eachCat.id}`}>
-              <h3>{eachCat.name}</h3>
-            </Link>
+        <div>
+          <div key={eachCat._id}>
+            <div className="cat">
+              <img src={eachCat.image?.url} alt=" unavailable" width="200vw" />
+              <br />
+              <Link to={`/cat-detail/${eachCat.id}`}>
+                <h3>{eachCat.name}</h3>
+              </Link>
+            </div>
           </div>
         </div>
       );
@@ -66,6 +68,7 @@ class Cat extends Component {
   render() {
     return (
       <>
+        <h1>Cat Breeds</h1>
         <input
           onChange={this.search}
           name="search"

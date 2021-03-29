@@ -59,6 +59,9 @@ export default class AddStory extends Component {
   render() {
     return (
       <div>
+                <h1>
+Add Your Cat's Story
+          </h1>
         <form onSubmit={this.handleSubmit}>
           <input
             onChange={this.handleChange}
