@@ -42,6 +42,7 @@ class Login extends Component {
     const errorStatus = this.state.errorStatus;
     return (
       <div>
+        <h1>Login</h1>
         <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input

@@ -48,7 +48,8 @@ class Profile extends Component {
       if (eachStory.userId._id === this.state.loggedInUser._id)
         return (
           <div className="cat" key={eachStory._id}>
-          <img className="rescueImg" src={eachStory.imageUrl} alt='Cat Pic' /> <br />
+            <img className="rescueImg" src={eachStory.imageUrl} alt="Cat Pic" />{" "}
+            <br />
             <span className="attributes">Name:</span> {eachStory.name}
             <br /> <br />
             <span className="attributes">Age:</span> {eachStory.age}
@@ -79,7 +80,7 @@ class Profile extends Component {
         console.log("deleted frontend");
       })
       .catch((err) => console.log(err));
-      window.location.reload(false)
+    window.location.reload(false);
   };
 
   editStory = (id) => {
@@ -178,6 +179,7 @@ class Profile extends Component {
     if (this.state.loggedInUser) {
       return (
         <div>
+          <h1>Profile</h1>
           {this.editProfileForm()}
           <br />
           <div className="cat-grid">{this.showAllStories()}</div>

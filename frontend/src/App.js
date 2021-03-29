@@ -66,11 +66,6 @@ class App extends Component {
               <button onClick={this.logoutUser}>Logout </button>
             </Link>
           </nav>
-          <h1>
-            Every Day is
-            <br />
-            Caturday
-          </h1>
 
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} />} />
@@ -156,12 +151,6 @@ class App extends Component {
             <Link to="/rescueStories">RescueStories</Link>
             <Link to="/login">Login</Link>
           </nav>
-          <h1>
-            Every Day is
-            <br />
-            Caturday
-          </h1>
-
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} />} />
             <Route

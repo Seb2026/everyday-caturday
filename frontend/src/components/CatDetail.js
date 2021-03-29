@@ -46,6 +46,7 @@ class CatDetail extends Component {
     const hypoallergenic = this.state.hypoallergenic;
     return (
       <div>
+        <h1>About {this.state.catDetails.name} Cats</h1>
         <img className="cat-img" src={this.state.image} alt="unavailable" />
         <p>{this.state.catDetails.name}</p>
         <p>{this.state.catDetails.description}</p>

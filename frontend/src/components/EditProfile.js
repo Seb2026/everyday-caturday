@@ -110,6 +110,11 @@ export default class EditProfile extends Component {
   };
 
   render() {
-    return <div>{this.showForm()}</div>;
+    return (
+      <div>
+        <h1>Edit Your Profile</h1>
+        {this.showForm()}
+      </div>
+    );
   }
 }
