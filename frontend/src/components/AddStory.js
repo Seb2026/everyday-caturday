@@ -28,9 +28,13 @@ export default class AddStory extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/rescue-story", this.state, {
-        withCredentials: true,
-      })
+      .post(
+        "https://everyday-is-caturday.herokuapp.com/api/rescue-story",
+        this.state,
+        {
+          withCredentials: true,
+        }
+      )
       .then(() => {
         this.props.history.push("/rescueStories");
       })
@@ -59,9 +63,7 @@ export default class AddStory extends Component {
   render() {
     return (
       <div>
-                <h1>
-Add Your Cat's Story
-          </h1>
+        <h1>Add Your Cat's Story</h1>
         <form onSubmit={this.handleSubmit}>
           <input
             onChange={this.handleChange}

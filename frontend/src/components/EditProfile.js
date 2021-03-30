@@ -19,7 +19,9 @@ export default class EditProfile extends Component {
     const { params } = this.props.match;
 
     axios
-      .get(`http://localhost:5000/api/editstory/${params.id}`)
+      .get(
+        `https://everyday-is-caturday.herokuapp.com/api/editstory/${params.id}`
+      )
       .then((response) => {
         this.setState({
           loggedInUser: this.props.userInSession
@@ -48,7 +50,7 @@ export default class EditProfile extends Component {
 
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/api/edit/${params.id}`, {
+      .put(`https://everyday-is-caturday.herokuapp.com/api/edit/${params.id}`, {
         name,
         breed,
         age,
