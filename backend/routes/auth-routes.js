@@ -29,7 +29,7 @@ authRoutes.post("/signup", (req, res, next) => {
 
   User.findOne({ username }, (err, foundUser) => {
     if (err) {
-      res.status(500).json({ message: "Username check went bad." });
+      res.status(500).json({ message: "User check went bad." });
       return;
     }
 
@@ -116,4 +116,5 @@ authRoutes.post("/login", (req, res, next) => {
     });
   })(req, res, next);
 });
+
 module.exports = authRoutes;
