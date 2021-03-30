@@ -57,6 +57,11 @@ button {
   color: #ccc;
 }
 
+.required {
+  font-size: 0.9rem;
+  color: red;
+}
+
 .content {
   display: flex;
   flex-direction: column;

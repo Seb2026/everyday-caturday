@@ -39,6 +39,8 @@ class Signup extends Component {
           email: "",
         });
         this.props.getUser(response);
+        this.props.history.push(`/profile/${response._id}`);
+
       })
       .catch((error) => {
         if (error.response) {
@@ -62,8 +64,12 @@ class Signup extends Component {
     return (
       <div>
         <h1>Sign Up</h1>
+        <p className="required">Fields denoted with an '*' are required.</p>
         <form onSubmit={this.handleFormSubmit}>
-          <label> First Name: </label>
+          <label>
+            <span className="required">* </span>
+            First Name:&nbsp;&nbsp;
+          </label>
           <input
             type="text"
             name="firstName"
@@ -87,7 +93,10 @@ class Signup extends Component {
             value={this.state.location}
             onChange={(e) => this.handleChange(e)}
           />
-          <label> Email: </label>
+          <label>
+            &nbsp;&nbsp;<span className="required">* </span>
+            Email:&nbsp;&nbsp;
+          </label>
           <input
             type="email"
             name="email"
@@ -100,7 +109,10 @@ class Signup extends Component {
           <p>
             <label>Create your Login</label>
           </p>
-          <label> Username: </label>
+          <label>
+            <span className="required">* </span>
+            Username:&nbsp;&nbsp;
+          </label>
           <input
             type="text"
             name="username"
@@ -109,7 +121,10 @@ class Signup extends Component {
             onChange={(e) => this.handleChange(e)}
           />
 
-          <label> Password: </label>
+          <label>
+            &nbsp;&nbsp;<span className="required">* </span>
+            Password:&nbsp;&nbsp;
+          </label>
           <input
             name="password"
             type="password"

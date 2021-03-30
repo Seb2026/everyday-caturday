@@ -14,6 +14,7 @@ class Profile extends Component {
     firstName: "",
     lastName: "",
     location: "",
+    email: "",
     hidden: true,
   };
 
@@ -39,6 +40,7 @@ class Profile extends Component {
           firstName: userRes.data.firstName,
           lastName: userRes.data.lastName,
           location: userRes.data.location,
+          email: userRes.data.email,
         });
       });
   }
@@ -123,6 +125,10 @@ class Profile extends Component {
     });
   };
 
+  hideForm = () => {
+    this.setState({ hidden: true });
+  };
+
   editProfileForm = () => {
     return (
       <>
@@ -169,7 +175,18 @@ class Profile extends Component {
             />
           </label>
 
-          <button onClick={() => window.location.reload(false)}>Update</button>
+          <label>
+            Email:
+            <input
+              onChange={this.handleChange}
+              value={this.state.email}
+              name="email"
+              type="email"
+            />
+          </label>
+
+          {/* <button onClick={() => window.location.reload(false)}>Update</button> */}
+          <button onClick={this.hideForm}>Update</button>
         </form>
       </>
     );
@@ -180,6 +197,14 @@ class Profile extends Component {
       return (
         <div>
           <h1>Profile</h1>
+
+          <div>
+            Welcome, {this.state.firstName} {this.state.lastName}
+            <br />
+            {this.state.location}
+            <br />
+            {this.state.email}
+          </div>
           {this.editProfileForm()}
           <br />
           <div className="cat-grid">{this.showAllStories()}</div>
