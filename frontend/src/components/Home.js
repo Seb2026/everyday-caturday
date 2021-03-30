@@ -12,14 +12,16 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
         <h1>
           Every Day is
           <br />
           Caturday
         </h1>
-        <CarouselComponent />
-        <p>
+        <div className="content">
+          <CarouselComponent />
+        </div>
+        <p className="content-text">
           Studies have shown that cats have a calming effect on their owners,
           from the soothing action of petting to purring being an aid in falling
           asleep. Cat owners can reduce tensions by just stroking their furry
@@ -29,7 +31,9 @@ class Home extends Component {
           10-year study has even shown that cat owners were 30% less likely to
           die of a heart attack or stroke than non-cat owners.
         </p>
-        <Link to="/petFinderSearch">Adopt a Cat Today!</Link>
+        <h2>
+          <Link to="/petFinderSearch">Adopt a Cat Today!</Link>
+        </h2>
       </div>
     );
   }

@@ -69,12 +69,17 @@ class Cat extends Component {
     return (
       <>
         <h1>Cat Breeds</h1>
-        <input
-          onChange={this.search}
-          name="search"
-          placeholder="Keyword Search"
-          type="text"
-        />
+
+        <label>
+          Search by breed, temperament, general keywords
+          <br />
+          <input
+            onChange={this.search}
+            name="search"
+            placeholder="🔎"
+            type="text"
+          />
+        </label>
 
         <div className="cat-grid">{this.allCats()}</div>
       </>

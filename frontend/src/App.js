@@ -146,10 +146,11 @@ class App extends Component {
       return (
         <div>
           <nav>
+            <img src="./images/catIcon.png" alt="catLogo" />
             <Link to="/">Home</Link>
             <Link to="/cat-list">Cats</Link>
             <Link to="/rescueStories">RescueStories</Link>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Login/Signup</Link>
           </nav>
           <Switch>
             <Route exact path="/" render={(props) => <Home {...props} />} />

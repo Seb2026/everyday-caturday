@@ -44,14 +44,14 @@ class Login extends Component {
       <div>
         <h1>Login</h1>
         <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
+          <label> Username: </label>
           <input
             type="text"
             name="username"
             onChange={(e) => this.handleChange(e)}
             value={this.state.username}
           />
-          <label>Password:</label>
+          <label> Password: </label>
           <input
             name="password"
             type="password"
