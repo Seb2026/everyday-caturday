@@ -23,17 +23,21 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5000/api/rescue-story").then((response) => {
-      this.setState({
-        listOfUserStories: response.data,
-        loggedInUser: this.props.userInSession
-          ? this.props.userInSession
-          : null,
+    axios
+      .get("https://everyday-is-caturday.herokuapp.com/api/rescue-story")
+      .then((response) => {
+        this.setState({
+          listOfUserStories: response.data,
+          loggedInUser: this.props.userInSession
+            ? this.props.userInSession
+            : null,
+        });
       });
-    });
 
     axios
-      .get(`http://localhost:5000/api/profile/${this.props.match.params.id}`)
+      .get(
+        `https://everyday-is-caturday.herokuapp.com/api/profile/${this.props.match.params.id}`
+      )
       .then((userRes) => {
         this.setState({
           username: userRes.data.username,
@@ -77,7 +81,9 @@ class Profile extends Component {
 
   deleteStory = (id) => {
     axios
-      .delete(`http://localhost:5000/api/rescue-story/delete/${id}`)
+      .delete(
+        `https://everyday-is-caturday.herokuapp.com/api/rescue-story/delete/${id}`
+      )
       .then(() => {
         console.log("deleted frontend");
       })
@@ -92,12 +98,15 @@ class Profile extends Component {
     const story = this.state.editedStory;
 
     axios
-      .put(`http://localhost:5000/api/rescue-story/edit/${id}`, {
-        name,
-        breed,
-        age,
-        story,
-      })
+      .put(
+        `https://everyday-is-caturday.herokuapp.com/api/rescue-story/edit/${id}`,
+        {
+          name,
+          breed,
+          age,
+          story,
+        }
+      )
       .then(() => {
         this.props.history.push("/rescueStories");
       })
@@ -111,7 +120,7 @@ class Profile extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios.put(
-      `http://localhost:5000/api/edit-user/${this.props.match.params.id}`,
+      `https://everyday-is-caturday.herokuapp.com/api/edit-user/${this.props.match.params.id}`,
       this.state,
       {
         withCredentials: true,

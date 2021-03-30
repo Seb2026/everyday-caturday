@@ -18,16 +18,20 @@ class RescueStories extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5000/api/rescue-story").then((response) => {
-      this.setState({
-        listOfStories: response.data,
+    axios
+      .get("https://everyday-is-caturday.herokuapp.com/api/rescue-story")
+      .then((response) => {
+        this.setState({
+          listOfStories: response.data,
+        });
       });
-    });
   }
 
   deleteStory = (id) => {
     axios
-      .delete(`http://localhost:5000/api/rescue-story/delete/${id}`)
+      .delete(
+        `https://everyday-is-caturday.herokuapp.com/api/rescue-story/delete/${id}`
+      )
       .then(() => {
         console.log("deleted frontend");
       })
@@ -59,9 +63,13 @@ class RescueStories extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/api/rescue-story", this.state, {
-      withCredentials: true,
-    });
+    axios.post(
+      "https://everyday-is-caturday.herokuapp.com/api/rescue-story",
+      this.state,
+      {
+        withCredentials: true,
+      }
+    );
     this.props.history.push("/");
   };
 
