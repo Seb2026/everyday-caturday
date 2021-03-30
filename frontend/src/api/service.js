@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const service = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? process.env.REACT_APP_SERVER_URL : `https://everyday-is-caturday.herokuapp.com/api`
+    baseURL: process.env.NODE_ENV === 'production' ? process.env.REACT_APP_SERVER_URL : `http://localhost:5000/api`
   });
 
 const errorHandler = err => {
